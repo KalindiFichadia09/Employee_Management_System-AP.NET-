@@ -1,0 +1,35 @@
+﻿UPDATE Employee_tbl
+SET Used_CL = 0, Used_PL = 0, Used_SL = 0
+WHERE Used_CL IS NULL OR Used_PL IS NULL OR Used_SL IS NULL;
+
+UPDATE Employee_tbl
+SET Total_CL = 20, Total_PL = 15, Total_SL = 20, 
+    Used_CL = 0, Used_PL = 0, Used_SL = 0
+WHERE Total_CL IS NULL 
+   OR Total_PL IS NULL 
+   OR Total_SL IS NULL 
+   OR Used_CL IS NULL 
+   OR Used_PL IS NULL 
+   OR Used_SL IS NULL;
+
+ALTER TABLE Employee_tbl
+ALTER COLUMN Total_CL INT NOT NULL;
+ALTER TABLE Employee_tbl
+ALTER COLUMN Total_PL INT NOT NULL;
+ALTER TABLE Employee_tbl
+ALTER COLUMN Total_SL INT NOT NULL;
+ALTER TABLE Employee_tbl
+ALTER COLUMN Used_CL INT NOT NULL;
+ALTER TABLE Employee_tbl
+ALTER COLUMN Used_PL INT NOT NULL;
+ALTER TABLE Employee_tbl
+ALTER COLUMN Used_SL INT NOT NULL;
+
+--ALTER TABLE Employee_tbl ADD DEFAULT 20 FOR Total_CL;
+--ALTER TABLE Employee_tbl ADD DEFAULT 15 FOR Total_PL;
+--ALTER TABLE Employee_tbl ADD DEFAULT 20 FOR Total_SL;
+--ALTER TABLE Employee_tbl ADD DEFAULT 0 FOR Used_CL;
+--ALTER TABLE Employee_tbl ADD DEFAULT 0 FOR Used_PL;
+--ALTER TABLE Employee_tbl ADD DEFAULT 0 FOR Used_SL;
+
+

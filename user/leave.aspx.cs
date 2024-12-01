@@ -50,6 +50,36 @@ namespace project_sem_6_.user
                 DateTime endDate = DateTime.Parse(L_End_Date.Text);
                 int leaveDays = (endDate - startDate).Days + 1;
 
+                // Check if there are enough remaining leaves for the selected type
+                string remainingLeaveQuery = "";
+                switch (L_Type.SelectedValue)
+                {
+                    case "CL":
+                        remainingLeaveQuery = "SELECT Remaining_CL FROM Employee_tbl WHERE Emp_Employee_Id = @EmpId";
+                        break;
+
+                    case "PL":
+                        remainingLeaveQuery = "SELECT Remaining_PL FROM Employee_tbl WHERE Emp_Employee_Id = @EmpId";
+                        break;
+
+                    case "SL":
+                        remainingLeaveQuery = "SELECT Remaining_SL FROM Employee_tbl WHERE Emp_Employee_Id = @EmpId";
+                        break;
+                }
+
+                int remainingLeaves = 0;
+                using (SqlCommand cmd = new SqlCommand(remainingLeaveQuery, con))
+                {
+                    cmd.Parameters.AddWithValue("@EmpId", ViewState["L_Emp_Id"].ToString());
+                    remainingLeaves = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+
+                if (remainingLeaves < leaveDays)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Not enough remaining leaves for this type. Please check your leave summary.');", true);
+                    return;
+                }
+
                 // Insert leave application data
                 cs.Apply_leave_insert(
                     ViewState["L_Emp_Id"].ToString(),
@@ -78,6 +108,7 @@ namespace project_sem_6_.user
             }
             Response.Redirect(Request.RawUrl);
         }
+
 
         void UpdateLeaveCounts(string empId, string leaveType, int leaveDays)
         {

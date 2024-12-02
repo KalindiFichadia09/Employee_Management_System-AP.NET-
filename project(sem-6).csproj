@@ -70,6 +70,7 @@
     <Content Include="admin\deshboard.aspx" />
     <Content Include="admin\employee_profile.aspx" />
     <Content Include="admin\manage_departments.aspx" />
+    <Content Include="admin\manage_designations.aspx" />
     <Content Include="admin\manage_employee.aspx" />
     <Content Include="admin\manage_holidays.aspx" />
     <Content Include="admin\manage_leave.aspx" />
@@ -616,6 +617,13 @@
     </Compile>
     <Compile Include="admin\manage_departments.aspx.designer.cs">
       <DependentUpon>manage_departments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\manage_designations.aspx.cs">
+      <DependentUpon>manage_designations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\manage_designations.aspx.designer.cs">
+      <DependentUpon>manage_designations.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\manage_employee.aspx.cs">
       <DependentUpon>manage_employee.aspx</DependentUpon>

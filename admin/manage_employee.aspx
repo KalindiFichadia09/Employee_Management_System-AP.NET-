@@ -197,8 +197,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <asp:Label ID="Label1" runat="server" Text="Employee Department"></asp:Label>
-                                            <asp:DropDownList ID="Emp_Department" runat="server" class="custom-select form-control" DataSourceID="departmentName" DataTextField="Dept_Name" DataValueField="Dept_Name">
-                                            </asp:DropDownList>
+                                            <asp:DropDownList ID="Emp_Department" runat="server" class="custom-select form-control" DataSourceID="departmentName" DataTextField="Dept_Name" DataValueField="Dept_Name"></asp:DropDownList>
                                             <asp:SqlDataSource runat="server" ID="departmentName" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Employee_Management_db.mdf;Integrated Security=True" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Dept_Name] FROM [Department_tbl]"></asp:SqlDataSource>
                                         </div>
                                     </div>
@@ -228,6 +227,15 @@
                                             </asp:DropDownList>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="Label23" runat="server" Text="Employee Department"></asp:Label>
+                                            <asp:DropDownList ID="Emp_Designation" runat="server" class="custom-select form-control" DataSourceID="SqlDataSource1" DataTextField="Designation_Name" DataValueField="Designation_Name"></asp:DropDownList>
+                                            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT [Id], [Designation_Name] FROM [Designation_tbl]"></asp:SqlDataSource>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <asp:Label ID="Label17" runat="server" Text="Password"></asp:Label>
@@ -381,5 +389,6 @@
             <br>
             <br>
         </div>
+    </div>
 </asp:Content>
 

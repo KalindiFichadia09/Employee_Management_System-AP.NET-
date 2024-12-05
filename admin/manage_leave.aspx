@@ -62,14 +62,12 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     Employee Id :
-                                           
                                     <asp:Label ID="Emp_Id" runat="server" class="h5 text-black-50" Text="Label"></asp:Label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     Leave Type : 
-                                           
                                     <asp:Label ID="Leave_Type" runat="server" class="h5 text-black-50" Text="Label"></asp:Label>
                                 </div>
                             </div>
@@ -78,14 +76,12 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     Leave Category :
-                                           
                                     <asp:Label ID="Leave_Category" runat="server" class="h5 text-black-50" Text="Label"></asp:Label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     Leave Start Date :
-                                           
                                     <asp:Label ID="Leave_Start_Date" runat="server" class="h5 text-black-50" Text="Label"></asp:Label>
                                 </div>
                             </div>
@@ -94,14 +90,12 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     Leave End Date :
-                                           
                                     <asp:Label ID="Leave_End_Date" runat="server" class="h5 text-black-50" Text="Label"></asp:Label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     Leave Remark : 
-                                           
                                     <asp:Label ID="Leave_Remark" runat="server" class="h5 text-black-50" Text="Label"></asp:Label>
                                 </div>
                             </div>
@@ -110,7 +104,6 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     Action :
-                                           
                                     <asp:Label ID="Leave_Action" runat="server" class="h5 text-black-50" Text="Label"></asp:Label>
                                 </div>
                             </div>
@@ -118,7 +111,6 @@
                         <div class="btn-set">
                             <asp:Button ID="btn_approve" runat="server" Text="Approve" OnClick="btn_approve_Click" class="btn btn-success" />
                             &nbsp;&nbsp;&nbsp;
-                                   
                             <asp:Button ID="btn_decline" runat="server" Text="Decline" OnClick="btn_decline_Click" class="btn btn-danger" />
                         </div>
                     </div>

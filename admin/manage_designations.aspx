@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                <asp:Button ID="btn_addc" runat="server" CssClass="btn btn-info" Text="Add Designation" OnClick="btn_addc_Click" />
+                <asp:Button ID="btn_addd" runat="server" CssClass="btn btn-info" Text="Add Designations" OnClick="btn_addd_Click" />
                 <br />
                 <br />
                 <div class="pd-20 card-box mb-30">
@@ -32,9 +32,9 @@
                                         <asp:Label ID="Label2" runat="server" Text='<%# Eval("Designation_Name") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Base Salary">
+                                <asp:TemplateField HeaderText="Hourly Rate">
                                     <ItemTemplate>
-                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("BaseSalary") %>'></asp:Label>
+                                        <asp:Label ID="Label17" runat="server" Text='<%# Eval("Hourly_Rate") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Edit">
@@ -48,63 +48,40 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
+                            <EmptyDataTemplate>
+                                <tr>
+                                    <td colspan="10" style="text-align: center;"><h3>No data found</h3></td>
+                                </tr>
+                            </EmptyDataTemplate>
                         </asp:GridView>
                     </div>
                 </div>
             </div>
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" Visible="False">
                 <ContentTemplate>
                     <div class="pd-20 card-box mb-30">
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
                                 <h5>
-                                    <asp:Label ID="lbl_heading" runat="server" Text="Add"></asp:Label>
-                                </h5>
+                                    <asp:Label ID="lbl_heading" runat="server" Text="Add"></asp:Label></h5>
                                 <hr />
                             </div>
                         </div>
+                        <br />
                         <form>
+                            <!-- Designation Name -->
                             <div class="form-group row">
-                                <asp:Label ID="Label4" runat="server" Text="Designation Name" class="col-sm-12 col-md-2 col-form-label"></asp:Label>
+                                <asp:Label ID="Label15" runat="server" Text="Designation Name" class="col-sm-12 col-md-2 col-form-label"></asp:Label>
                                 <div class="col-sm-12 col-md-10">
                                     <asp:TextBox ID="Designation_Name" runat="server" class="form-control" placeholder="Enter Designation Name"></asp:TextBox>
                                 </div>
                             </div>
-                            <!-- Input fields for additional columns -->
+                            <%-- Hourly Rate --%>
                             <div class="form-group row">
-                                <asp:Label ID="Label5" runat="server" Text="Base Salary" class="col-sm-12 col-md-2 col-form-label"></asp:Label>
+                                <asp:Label ID="Label16" runat="server" Text="Hourly Rate" class="col-sm-12 col-md-2 col-form-label"></asp:Label>
                                 <div class="col-sm-12 col-md-10">
-                                    <asp:TextBox ID="BaseSalary" runat="server" class="form-control" placeholder="Enter Base Salary"></asp:TextBox>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <asp:Label ID="Label6" runat="server" Text="HRA" class="col-sm-12 col-md-2 col-form-label"></asp:Label>
-                                <div class="col-sm-12 col-md-10">
-                                    <asp:TextBox ID="HRA" runat="server" class="form-control" placeholder="Enter HRA"></asp:TextBox>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <asp:Label ID="Label7" runat="server" Text="DA" class="col-sm-12 col-md-2 col-form-label"></asp:Label>
-                                <div class="col-sm-12 col-md-10">
-                                    <asp:TextBox ID="DA" runat="server" class="form-control" placeholder="Enter DA"></asp:TextBox>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <asp:Label ID="Label8" runat="server" Text="TA" class="col-sm-12 col-md-2 col-form-label"></asp:Label>
-                                <div class="col-sm-12 col-md-10">
-                                    <asp:TextBox ID="TA" runat="server" class="form-control" placeholder="Enter TA"></asp:TextBox>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <asp:Label ID="Label9" runat="server" Text="Other Allowances" class="col-sm-12 col-md-2 col-form-label"></asp:Label>
-                                <div class="col-sm-12 col-md-10">
-                                    <asp:TextBox ID="OtherAllowances" runat="server" class="form-control" placeholder="Enter Other Allowances"></asp:TextBox>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <asp:Label ID="Label10" runat="server" Text="Deductions" class="col-sm-12 col-md-2 col-form-label"></asp:Label>
-                                <div class="col-sm-12 col-md-10">
-                                    <asp:TextBox ID="Deductions" runat="server" class="form-control" placeholder="Enter Deductions"></asp:TextBox>
+                                    <asp:TextBox ID="Rate" runat="server" class="form-control" placeholder="Enter Hourly Rate"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="btn-set">
@@ -114,7 +91,13 @@
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
-            <br />
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
         </div>
     </div>
 </asp:Content>
+

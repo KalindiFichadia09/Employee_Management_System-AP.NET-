@@ -176,6 +176,11 @@
 															<asp:Label ID="Emp_Job_Type" runat="server" class="h5 text-black-50" Text="Label"></asp:Label>
 															<%--Permenent--%> 
 														</li>
+														<li class="col-md-6">
+															<span>Designation :</span>
+															<asp:Label ID="Emp_Designation" runat="server" class="h5 text-black-50" Text="Label"></asp:Label>
+															<%--Permenent--%> 
+														</li>
 													</div>
 												</ul>
 											</div>

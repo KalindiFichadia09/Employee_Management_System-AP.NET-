@@ -180,6 +180,11 @@
 															<asp:Label ID="Emp_Job_Type" runat="server" class="h5 text-black-50" Text="Label"></asp:Label>
 															<%--Permenent--%> 
 														</li>
+														<li class="col-md-6">
+															<span>Designation :</span>
+															<asp:Label ID="Emp_Designation" runat="server" class="h5 text-black-50" Text="Label"></asp:Label>
+															<%--Permenent--%> 
+														</li>
 													</div>
 												</ul>
 											</div>
@@ -459,12 +464,21 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="Label23" runat="server" Text="Employee Department"></asp:Label>
+                                            <asp:DropDownList ID="Emp_Designation_U" runat="server" class="custom-select form-control" DataSourceID="SqlDataSource1" DataTextField="Designation_Name" DataValueField="Id"></asp:DropDownList>
+                                            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT [Id], [Designation_Name] FROM [Designation_Salary_tbl]"></asp:SqlDataSource>
+                                        </div>
+                                    </div>
+                                        </div>
+										<div class="row">
+											<div class="col-md-6">
                                                 <div class="form-group">
                                                     <asp:Label ID="Label17" runat="server" Text="Password"></asp:Label>
                                                     <asp:TextBox ID="Emp_Password_U" runat="server" class="form-control" placeholder="Enter Password"></asp:TextBox>
                                                 </div>
                                             </div>
-                                        </div>
+										</div>
                                         <div class="btn-set">
                                             <asp:Button ID="Button4" runat="server" Text="Previous" class="btn btn-primary" CommandName="PrevView" />
                                             &nbsp;&nbsp;&nbsp;

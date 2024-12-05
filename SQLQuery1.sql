@@ -1,35 +1,9 @@
-﻿UPDATE Employee_tbl
-SET Used_CL = 0, Used_PL = 0, Used_SL = 0
-WHERE Used_CL IS NULL OR Used_PL IS NULL OR Used_SL IS NULL;
+﻿truncate table Designation_Salary_tbl
 
-UPDATE Employee_tbl
-SET Total_CL = 20, Total_PL = 15, Total_SL = 20, 
-    Used_CL = 0, Used_PL = 0, Used_SL = 0
-WHERE Total_CL IS NULL 
-   OR Total_PL IS NULL 
-   OR Total_SL IS NULL 
-   OR Used_CL IS NULL 
-   OR Used_PL IS NULL 
-   OR Used_SL IS NULL;
-
-ALTER TABLE Employee_tbl
-ALTER COLUMN Total_CL INT NOT NULL;
-ALTER TABLE Employee_tbl
-ALTER COLUMN Total_PL INT NOT NULL;
-ALTER TABLE Employee_tbl
-ALTER COLUMN Total_SL INT NOT NULL;
-ALTER TABLE Employee_tbl
-ALTER COLUMN Used_CL INT NOT NULL;
-ALTER TABLE Employee_tbl
-ALTER COLUMN Used_PL INT NOT NULL;
-ALTER TABLE Employee_tbl
-ALTER COLUMN Used_SL INT NOT NULL;
-
---ALTER TABLE Employee_tbl ADD DEFAULT 20 FOR Total_CL;
---ALTER TABLE Employee_tbl ADD DEFAULT 15 FOR Total_PL;
---ALTER TABLE Employee_tbl ADD DEFAULT 20 FOR Total_SL;
---ALTER TABLE Employee_tbl ADD DEFAULT 0 FOR Used_CL;
---ALTER TABLE Employee_tbl ADD DEFAULT 0 FOR Used_PL;
---ALTER TABLE Employee_tbl ADD DEFAULT 0 FOR Used_SL;
-
-
+INSERT INTO [dbo].[Designation_Salary_tbl] 
+    ([Designation_Name], [BaseSalary], [HRA], [DA], [TA], [OtherAllowances], [Deductions], [Hourly_Rate])
+VALUES 
+    ('Manager', 50000.00, 10000.00, 5000.00, 3000.00, 2000.00, 1500.00, 250.00),
+    ('Developer', 40000.00, 8000.00, 4000.00, 2500.00, 1500.00, 1200.00, 220.00),
+    ('Tester', 35000.00, 7000.00, 3500.00, 2000.00, 1000.00, 1100.00, 210.00),
+    ('HR', 45000.00, 9000.00, 4500.00, 2500.00, 1800.00, 1300.00, 240.00);

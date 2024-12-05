@@ -104,6 +104,11 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="manage_designations.aspx" class="dropdown-toggle no-arrow">
+                                        <span class="micon dw dw-library"></span><span class="mtext">Manage Designations</span>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="manage_employee.aspx" class="dropdown-toggle no-arrow">
                                         <span class="micon fa fa-users"></span><span class="mtext">Manage Employees</span>
                                     </a>
@@ -205,9 +210,9 @@
             </asp:ContentPlaceHolder>
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder4" runat="server">
-                <footer class=" bg-footer text-dark mt-auto pt-5">
+                <div class="footer-wrap pd-20 mb-20 card-box">
                     AutoFusion - Your Value Our Need <a href="https://github.com/dropways" target="_blank"></a>
-                </footer>
+                </div>
         </div>
         </div>
 	<!-- js -->

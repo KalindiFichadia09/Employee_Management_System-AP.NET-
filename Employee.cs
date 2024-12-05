@@ -54,10 +54,42 @@ namespace project_sem_6_
             cmd.ExecuteNonQuery();
         }
 
-        //Employee CRUD
-        public void Employee_Add(string Emp_Full_Name, string Emp_Father_Name, string Emp_Mother_Name, string Emp_Gender, string Emp_Date_of_Birth, string Emp_Adhar_Number, string Emp_Blood_Group, string Emp_Age, string Emp_Mobile, string Emp_Email, string Emp_Image, string Emp_Employee_Id, string Emp_Department, string Emp_Year_of_Joining, string Emp_Company_Email, string Emp_Job_Type, string Emp_Password, string Emp_Address, string Emp_City, string Emp_State, string Emp_Country, string Emp_Pincode, string Emp_Emergency_no, string Emp_Account_Holder_Name, string Emp_Bank_Name, string Emp_Account_no, string Emp_Bank_IFSC_Code, string Emp_Bank_Code, string Emp_Branch_Name)
+        //Designation CRUD
+        public void Designation_Add(string Designation_Name,decimal Hourly_rate)
         {
-            cmd = new SqlCommand("insert into Employee_tbl(Emp_Full_Name,Emp_Father_Name,Emp_Mother_Name,Emp_Gender,Emp_Date_of_Birth,Emp_Adhar_Number,Emp_Blood_Group,Emp_Age,Emp_Mobile,Emp_Email,Emp_Image,Emp_Employee_Id,Emp_Department,Emp_Year_of_Joining,Emp_Company_Email,Emp_Job_Type,Emp_Password,Emp_Address,Emp_City,Emp_State,Emp_Country,Emp_Pincode,Emp_Emergency_no,Emp_Account_Holder_Name,Emp_Bank_Name,Emp_Account_no,Emp_Bank_IFSC_Code,Emp_Bank_Code,Emp_Branch_Name) values('" + Emp_Full_Name + "','" + Emp_Father_Name + "','" + Emp_Mother_Name + "','" + Emp_Gender + "','" + Emp_Date_of_Birth + "','" + Emp_Adhar_Number + "','" + Emp_Blood_Group + "','" + Emp_Age + "','" + Emp_Mobile + "','" + Emp_Email + "','" + Emp_Image + "','" + Emp_Employee_Id + "','" + Emp_Department + "','" + Emp_Year_of_Joining + "','" + Emp_Company_Email + "','" + Emp_Job_Type + "','" + Emp_Password + "','" + Emp_Address + "','" + Emp_City + "','" + Emp_State + "','" + Emp_Country + "','" + Emp_Pincode + "','" + Emp_Emergency_no + "','" + Emp_Account_Holder_Name + "','" + Emp_Bank_Name + "','" + Emp_Account_no + "','" + Emp_Bank_IFSC_Code + "','" + Emp_Bank_Code + "','" + Emp_Branch_Name + "')", con);
+            cmd = new SqlCommand("INSERT INTO Designation_tbl (Designation_Name, Hourly_Rate) " +
+                     "VALUES ('" + Designation_Name + "'," + Hourly_rate + ")", con);
+            cmd.ExecuteNonQuery();
+        }
+        public DataSet Designation_Filldata()
+        {
+            da = new SqlDataAdapter("select * from Designation_tbl", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+        public DataSet Designation_Select(int id)
+        {
+            da = new SqlDataAdapter("select * from Designation_tbl where Id='" + id + "'", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+        public void Designation_Edit(int id, string Designation_Name,decimal Hourly_Rate)
+        {
+            cmd = new SqlCommand("UPDATE Designation_tbl SET Designation_Name='" + Designation_Name + "',Hourly_Rate='" + Hourly_Rate + "' WHERE Id='" + id + "'", con);
+            cmd.ExecuteNonQuery();
+        }
+        public void Designation_Remove(int id)
+        {
+            cmd = new SqlCommand("delete from Designation_tbl where Id='" + id + "' ", con);
+            cmd.ExecuteNonQuery();
+        }
+
+        //Employee CRUD
+        public void Employee_Add(string Emp_Full_Name, string Emp_Father_Name, string Emp_Mother_Name, string Emp_Gender, string Emp_Date_of_Birth, string Emp_Adhar_Number, string Emp_Blood_Group, string Emp_Age, string Emp_Mobile, string Emp_Email, string Emp_Image, string Emp_Employee_Id, string Emp_Department, string Emp_Year_of_Joining, string Emp_Company_Email, string Emp_Job_Type,string Emp_Designation, string Emp_Password, string Emp_Address, string Emp_City, string Emp_State, string Emp_Country, string Emp_Pincode, string Emp_Emergency_no, string Emp_Account_Holder_Name, string Emp_Bank_Name, string Emp_Account_no, string Emp_Bank_IFSC_Code, string Emp_Bank_Code, string Emp_Branch_Name)
+        {
+            cmd = new SqlCommand("insert into Employee_tbl(Emp_Full_Name,Emp_Father_Name,Emp_Mother_Name,Emp_Gender,Emp_Date_of_Birth,Emp_Adhar_Number,Emp_Blood_Group,Emp_Age,Emp_Mobile,Emp_Email,Emp_Image,Emp_Employee_Id,Emp_Department,Emp_Year_of_Joining,Emp_Company_Email,Emp_Job_Type,Emp_Designation,Emp_Password,Emp_Address,Emp_City,Emp_State,Emp_Country,Emp_Pincode,Emp_Emergency_no,Emp_Account_Holder_Name,Emp_Bank_Name,Emp_Account_no,Emp_Bank_IFSC_Code,Emp_Bank_Code,Emp_Branch_Name) values('" + Emp_Full_Name + "','" + Emp_Father_Name + "','" + Emp_Mother_Name + "','" + Emp_Gender + "','" + Emp_Date_of_Birth + "','" + Emp_Adhar_Number + "','" + Emp_Blood_Group + "','" + Emp_Age + "','" + Emp_Mobile + "','" + Emp_Email + "','" + Emp_Image + "','" + Emp_Employee_Id + "','" + Emp_Department + "','" + Emp_Year_of_Joining + "','" + Emp_Company_Email + "','" + Emp_Job_Type + "','" + Emp_Designation + "','" + Emp_Password + "','" + Emp_Address + "','" + Emp_City + "','" + Emp_State + "','" + Emp_Country + "','" + Emp_Pincode + "','" + Emp_Emergency_no + "','" + Emp_Account_Holder_Name + "','" + Emp_Bank_Name + "','" + Emp_Account_no + "','" + Emp_Bank_IFSC_Code + "','" + Emp_Bank_Code + "','" + Emp_Branch_Name + "')", con);
             cmd.ExecuteNonQuery();
         }
         public DataSet Employee_filldata()
@@ -74,9 +106,9 @@ namespace project_sem_6_
             da.Fill(ds);
             return ds;
         }
-        public void Employee_Edit(int id, string Emp_Full_Name, string Emp_Father_Name, string Emp_Mother_Name, string Emp_Gender, string Emp_Date_of_Birth, string Emp_Adhar_Number, string Emp_Blood_Group, string Emp_Age, string Emp_Mobile, string Emp_Email, string Emp_Employee_Id, string Emp_Department, string Emp_Year_of_Joining, string Emp_Company_Email, string Emp_Job_Type, string Emp_Password, string Emp_Address, string Emp_City, string Emp_State, string Emp_Country, string Emp_Pincode, string Emp_Emergency_no, string Emp_Account_Holder_Name, string Emp_Bank_Name, string Emp_Account_no, string Emp_Bank_IFSC_Code, string Emp_Bank_Code, string Emp_Branch_Name)
+        public void Employee_Edit(int id, string Emp_Full_Name, string Emp_Father_Name, string Emp_Mother_Name, string Emp_Gender, string Emp_Date_of_Birth, string Emp_Adhar_Number, string Emp_Blood_Group, string Emp_Age, string Emp_Mobile, string Emp_Email, string Emp_Employee_Id, string Emp_Department, string Emp_Year_of_Joining, string Emp_Company_Email, string Emp_Job_Type,string Emp_Designation, string Emp_Password, string Emp_Address, string Emp_City, string Emp_State, string Emp_Country, string Emp_Pincode, string Emp_Emergency_no, string Emp_Account_Holder_Name, string Emp_Bank_Name, string Emp_Account_no, string Emp_Bank_IFSC_Code, string Emp_Bank_Code, string Emp_Branch_Name)
         {
-            cmd = new SqlCommand("update Employee_tbl set Emp_Full_Name='" + Emp_Full_Name + "',Emp_Father_Name='" + Emp_Father_Name + "',Emp_Mother_Name='" + Emp_Mother_Name + "',Emp_Gender='" + Emp_Gender + "',Emp_Date_of_Birth='" + Emp_Date_of_Birth + "',Emp_Adhar_Number='" + Emp_Adhar_Number + "',Emp_Blood_Group='" + Emp_Blood_Group + "',Emp_Age='" + Emp_Age + "',Emp_Mobile='" + Emp_Mobile + "',Emp_Email='" + Emp_Email + "',Emp_Employee_Id='" + Emp_Employee_Id + "',Emp_Department='" + Emp_Department + "',Emp_Year_of_Joining='" + Emp_Year_of_Joining + "',Emp_Company_Email='" + Emp_Company_Email + "',Emp_Job_Type='" + Emp_Job_Type + "',Emp_Password='" + Emp_Password + "',Emp_Address='" + Emp_Address + "',Emp_City='" + Emp_City + "',Emp_State='" + Emp_State + "',Emp_Country='" + Emp_Country + "',Emp_Pincode='" + Emp_Pincode + "',Emp_Emergency_no='" + Emp_Emergency_no + "',Emp_Account_Holder_Name='" + Emp_Account_Holder_Name + "',Emp_Bank_Name='" + Emp_Bank_Name + "',Emp_Account_no='" + Emp_Account_no + "',Emp_Bank_IFSC_Code='" + Emp_Bank_IFSC_Code + "',Emp_Bank_Code='" + Emp_Bank_Code + "',Emp_Branch_Name='" + Emp_Branch_Name + "' where Id='" + id + "' ", con);
+            cmd = new SqlCommand("update Employee_tbl set Emp_Full_Name='" + Emp_Full_Name + "',Emp_Father_Name='" + Emp_Father_Name + "',Emp_Mother_Name='" + Emp_Mother_Name + "',Emp_Gender='" + Emp_Gender + "',Emp_Date_of_Birth='" + Emp_Date_of_Birth + "',Emp_Adhar_Number='" + Emp_Adhar_Number + "',Emp_Blood_Group='" + Emp_Blood_Group + "',Emp_Age='" + Emp_Age + "',Emp_Mobile='" + Emp_Mobile + "',Emp_Email='" + Emp_Email + "',Emp_Employee_Id='" + Emp_Employee_Id + "',Emp_Department='" + Emp_Department + "',Emp_Year_of_Joining='" + Emp_Year_of_Joining + "',Emp_Company_Email='" + Emp_Company_Email + "',Emp_Job_Type='" + Emp_Job_Type + "',Emp_Designation='" + Emp_Designation + "',Emp_Password='" + Emp_Password + "',Emp_Address='" + Emp_Address + "',Emp_City='" + Emp_City + "',Emp_State='" + Emp_State + "',Emp_Country='" + Emp_Country + "',Emp_Pincode='" + Emp_Pincode + "',Emp_Emergency_no='" + Emp_Emergency_no + "',Emp_Account_Holder_Name='" + Emp_Account_Holder_Name + "',Emp_Bank_Name='" + Emp_Bank_Name + "',Emp_Account_no='" + Emp_Account_no + "',Emp_Bank_IFSC_Code='" + Emp_Bank_IFSC_Code + "',Emp_Bank_Code='" + Emp_Bank_Code + "',Emp_Branch_Name='" + Emp_Branch_Name + "' where Id='" + id + "' ", con);
             cmd.ExecuteNonQuery();
         }
         public void Employee_Remove(int id)
@@ -110,6 +142,36 @@ namespace project_sem_6_
         public DataSet Leave_select_admin(int Id)
         {
             da = new SqlDataAdapter("select * from Leave_tbl where Id='" + Id + "' ", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+
+        //Payroll
+        public DataSet Payroll_filldata()
+        {
+            da = new SqlDataAdapter("select * from Payroll_tbl", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+        public DataSet Payroll_filldata_user(string Id)
+        {
+            da = new SqlDataAdapter("select * from Payroll_tbl where P_Emp_Id='" + Id + "' ", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+        public DataSet Payroll_select_admin(int Id)
+        {
+            da = new SqlDataAdapter("select * from Payroll_tbl where Id='" + Id + "' ", con);
+            ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+        public DataSet Payroll_select_user(int Id)
+        {
+            da = new SqlDataAdapter("select * from Payroll_tbl where Id='" + Id + "' ", con);
             ds = new DataSet();
             da.Fill(ds);
             return ds;

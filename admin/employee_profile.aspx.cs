@@ -55,6 +55,7 @@ namespace project_sem_6_.admin
                     Emp_Year_of_Joining.Text = rd["Emp_Year_of_Joining"].ToString();
                     Emp_Company_Email.Text = rd["Emp_Company_Email"].ToString();
                     Emp_Job_Type.Text = rd["Emp_Job_Type"].ToString();
+                    Emp_Designation.Text = rd["Emp_Designation"].ToString();
 
                     Emp_Address.Text = rd["Emp_Address"].ToString();
                     Emp_City.Text = rd["Emp_City"].ToString();

@@ -66,6 +66,7 @@ namespace project_sem_6_.user
                         Emp_Year_of_Joining.Text = rd["Emp_Year_of_Joining"].ToString();
                         Emp_Company_Email.Text = rd["Emp_Company_Email"].ToString();
                         Emp_Job_Type.Text = rd["Emp_Job_Type"].ToString();
+                        Emp_Designation.Text = rd["Emp_Designation"].ToString();
 
                         Emp_Address.Text = rd["Emp_Address"].ToString();
                         Emp_City.Text = rd["Emp_City"].ToString();
@@ -137,39 +138,40 @@ namespace project_sem_6_.user
         {
             ds = new DataSet();
             ds = cs.Employee_select(Convert.ToInt16(ViewState["id"]));
-            Emp_Full_Name_U.Text = (ds.Tables[0].Rows[0][1]).ToString();
-            Emp_Father_Name_U.Text = (ds.Tables[0].Rows[0][2]).ToString();
-            Emp_Mother_Name_U.Text = (ds.Tables[0].Rows[0][3]).ToString();
-            Emp_Gender_U.SelectedValue = (ds.Tables[0].Rows[0][4]).ToString();
-            Emp_Date_of_Birth_U.Text = (ds.Tables[0].Rows[0][5]).ToString();
-            Emp_Adhar_Number_U.Text = (ds.Tables[0].Rows[0][6]).ToString();
-            Emp_Blood_Group_U.SelectedValue = (ds.Tables[0].Rows[0][7]).ToString();
-            Emp_Age_U.Text = (ds.Tables[0].Rows[0][8]).ToString();
-            Emp_Mobile_U.Text = (ds.Tables[0].Rows[0][9]).ToString();
-            Emp_Email_U.Text = (ds.Tables[0].Rows[0][10]).ToString();
-            Emp_Employee_Id_U.Text = (ds.Tables[0].Rows[0][12]).ToString();
-            Emp_Department_U.SelectedValue = (ds.Tables[0].Rows[0][13]).ToString();
-            Emp_Year_of_Joining_U.Text = (ds.Tables[0].Rows[0][14]).ToString();
-            Emp_Company_Email_U.Text = (ds.Tables[0].Rows[0][15]).ToString();
-            Emp_Job_Type_U.SelectedValue = (ds.Tables[0].Rows[0][16]).ToString();
-            Emp_Password_U.Text = (ds.Tables[0].Rows[0][17]).ToString();
-            Emp_Address_U.Text = (ds.Tables[0].Rows[0][18]).ToString();
-            Emp_City_U.SelectedValue = (ds.Tables[0].Rows[0][19]).ToString();
-            Emp_State_U.SelectedValue = (ds.Tables[0].Rows[0][20]).ToString();
-            Emp_Country_U.SelectedValue = (ds.Tables[0].Rows[0][21]).ToString();
-            Emp_Pincode_U.Text = (ds.Tables[0].Rows[0][22]).ToString();
-            Emp_Emergency_no_U.Text = (ds.Tables[0].Rows[0][23]).ToString();
-            Emp_Account_Holder_Name_U.Text = (ds.Tables[0].Rows[0][24]).ToString();
-            Emp_Bank_Name_U.Text = (ds.Tables[0].Rows[0][25]).ToString();
-            Emp_Account_no_U.Text = (ds.Tables[0].Rows[0][26]).ToString();
-            Emp_Bank_IFSC_Code_U.Text = (ds.Tables[0].Rows[0][27]).ToString();
-            Emp_Bank_Code_U.Text = (ds.Tables[0].Rows[0][28]).ToString();
-            Emp_Branch_Name_U.Text = (ds.Tables[0].Rows[0][29]).ToString();
+            Emp_Full_Name.Text = (ds.Tables[0].Rows[0][1]).ToString();
+            Emp_Father_Name.Text = (ds.Tables[0].Rows[0][2]).ToString();
+            Emp_Mother_Name.Text = (ds.Tables[0].Rows[0][3]).ToString();
+            Emp_Gender.Text = (ds.Tables[0].Rows[0][4]).ToString();
+            Emp_Date_of_Birth.Text = (ds.Tables[0].Rows[0][5]).ToString();
+            Emp_Adhar_Number.Text = (ds.Tables[0].Rows[0][6]).ToString();
+            Emp_Blood_Group.Text = (ds.Tables[0].Rows[0][7]).ToString();
+            Emp_Age.Text = (ds.Tables[0].Rows[0][8]).ToString();
+            Emp_Mobile.Text = (ds.Tables[0].Rows[0][9]).ToString();
+            Emp_Email.Text = (ds.Tables[0].Rows[0][10]).ToString();
+            Emp_Employee_Id.Text = (ds.Tables[0].Rows[0][12]).ToString();
+            Emp_Department.Text = (ds.Tables[0].Rows[0][13]).ToString();
+            Emp_Year_of_Joining.Text = (ds.Tables[0].Rows[0][14]).ToString();
+            Emp_Company_Email.Text = (ds.Tables[0].Rows[0][15]).ToString();
+            Emp_Job_Type.Text = (ds.Tables[0].Rows[0][16]).ToString();
+            Emp_Designation.Text = (ds.Tables[0].Rows[0][17]).ToString();
+            Emp_Password.Text = (ds.Tables[0].Rows[0][18]).ToString();
+            Emp_Address.Text = (ds.Tables[0].Rows[0][19]).ToString();
+            Emp_City.Text = (ds.Tables[0].Rows[0][20]).ToString();
+            Emp_State.Text = (ds.Tables[0].Rows[0][21]).ToString();
+            Emp_Country.Text = (ds.Tables[0].Rows[0][22]).ToString();
+            Emp_Pincode.Text = (ds.Tables[0].Rows[0][23]).ToString();
+            Emp_Emergency_no.Text = (ds.Tables[0].Rows[0][24]).ToString();
+            Emp_Account_Holder_Name.Text = (ds.Tables[0].Rows[0][25]).ToString();
+            Emp_Bank_Name.Text = (ds.Tables[0].Rows[0][26]).ToString();
+            Emp_Account_no.Text = (ds.Tables[0].Rows[0][27]).ToString();
+            Emp_Bank_IFSC_Code.Text = (ds.Tables[0].Rows[0][28]).ToString();
+            Emp_Bank_Code.Text = (ds.Tables[0].Rows[0][29]).ToString();
+            Emp_Branch_Name.Text = (ds.Tables[0].Rows[0][30]).ToString();
         }
 
         protected void btn_crud_Click(object sender, EventArgs e)
         {
-            cs.Employee_Edit(Convert.ToInt16(ViewState["id"]), Emp_Full_Name_U.Text, Emp_Father_Name_U.Text, Emp_Mother_Name_U.Text, Emp_Gender_U.SelectedValue, Emp_Date_of_Birth_U.Text, Emp_Adhar_Number_U.Text, Emp_Blood_Group_U.SelectedValue, Emp_Age_U.Text, Emp_Mobile_U.Text, Emp_Email_U.Text, Emp_Employee_Id_U.Text, Emp_Department_U.Text, Emp_Year_of_Joining_U.Text, Emp_Company_Email_U.Text, Emp_Job_Type_U.SelectedValue, Emp_Password_U.Text, Emp_Address_U.Text, Emp_City_U.SelectedValue, Emp_State_U.SelectedValue, Emp_Country_U.Text, Emp_Pincode_U.Text, Emp_Emergency_no_U.Text, Emp_Account_Holder_Name_U.Text, Emp_Bank_Name_U.Text, Emp_Account_no_U.Text, Emp_Bank_IFSC_Code_U.Text, Emp_Bank_Code_U.Text, Emp_Branch_Name_U.Text);
+            cs.Employee_Edit(Convert.ToInt16(ViewState["id"]), Emp_Full_Name_U.Text, Emp_Father_Name_U.Text, Emp_Mother_Name_U.Text, Emp_Gender_U.SelectedValue, Emp_Date_of_Birth_U.Text, Emp_Adhar_Number_U.Text, Emp_Blood_Group_U.SelectedValue, Emp_Age_U.Text, Emp_Mobile_U.Text, Emp_Email_U.Text, Emp_Employee_Id_U.Text, Emp_Department_U.Text, Emp_Year_of_Joining_U.Text, Emp_Company_Email_U.Text, Emp_Job_Type_U.SelectedValue, Emp_Department_U.SelectedValue, Emp_Password_U.Text, Emp_Address_U.Text, Emp_City_U.SelectedValue, Emp_State_U.SelectedValue, Emp_Country_U.Text, Emp_Pincode_U.Text, Emp_Emergency_no_U.Text, Emp_Account_Holder_Name_U.Text, Emp_Bank_Name_U.Text, Emp_Account_no_U.Text, Emp_Bank_IFSC_Code_U.Text, Emp_Bank_Code_U.Text, Emp_Branch_Name_U.Text);
             clear();
             Response.Redirect(Request.RawUrl);
         }

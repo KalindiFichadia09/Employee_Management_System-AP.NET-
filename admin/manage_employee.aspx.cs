@@ -87,19 +87,20 @@ namespace project_sem_6_.admin
             Emp_Year_of_Joining.Text = (ds.Tables[0].Rows[0][14]).ToString();
             Emp_Company_Email.Text = (ds.Tables[0].Rows[0][15]).ToString();
             Emp_Job_Type.SelectedValue = (ds.Tables[0].Rows[0][16]).ToString();
-            Emp_Password.Text = (ds.Tables[0].Rows[0][17]).ToString();
-            Emp_Address.Text = (ds.Tables[0].Rows[0][18]).ToString();
-            Emp_City.SelectedValue = (ds.Tables[0].Rows[0][19]).ToString();
-            Emp_State.SelectedValue = (ds.Tables[0].Rows[0][20]).ToString();
-            Emp_Country.SelectedValue = (ds.Tables[0].Rows[0][21]).ToString();
-            Emp_Pincode.Text = (ds.Tables[0].Rows[0][22]).ToString();
-            Emp_Emergency_no.Text = (ds.Tables[0].Rows[0][23]).ToString();
-            Emp_Account_Holder_Name.Text = (ds.Tables[0].Rows[0][24]).ToString();
-            Emp_Bank_Name.Text = (ds.Tables[0].Rows[0][25]).ToString();
-            Emp_Account_no.Text = (ds.Tables[0].Rows[0][26]).ToString();
-            Emp_Bank_IFSC_Code.Text = (ds.Tables[0].Rows[0][27]).ToString();
-            Emp_Bank_Code.Text = (ds.Tables[0].Rows[0][28]).ToString();
-            Emp_Branch_Name.Text = (ds.Tables[0].Rows[0][29]).ToString();
+            Emp_Designation.SelectedValue = (ds.Tables[0].Rows[0][17]).ToString();
+            Emp_Password.Text = (ds.Tables[0].Rows[0][18]).ToString();
+            Emp_Address.Text = (ds.Tables[0].Rows[0][19]).ToString();
+            Emp_City.SelectedValue = (ds.Tables[0].Rows[0][20]).ToString();
+            Emp_State.SelectedValue = (ds.Tables[0].Rows[0][21]).ToString();
+            Emp_Country.SelectedValue = (ds.Tables[0].Rows[0][22]).ToString();
+            Emp_Pincode.Text = (ds.Tables[0].Rows[0][23]).ToString();
+            Emp_Emergency_no.Text = (ds.Tables[0].Rows[0][24]).ToString();
+            Emp_Account_Holder_Name.Text = (ds.Tables[0].Rows[0][25]).ToString();
+            Emp_Bank_Name.Text = (ds.Tables[0].Rows[0][26]).ToString();
+            Emp_Account_no.Text = (ds.Tables[0].Rows[0][27]).ToString();
+            Emp_Bank_IFSC_Code.Text = (ds.Tables[0].Rows[0][28]).ToString();
+            Emp_Bank_Code.Text = (ds.Tables[0].Rows[0][29]).ToString();
+            Emp_Branch_Name.Text = (ds.Tables[0].Rows[0][30]).ToString();
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -116,7 +117,7 @@ namespace project_sem_6_.admin
         {
             UpdatePanel1.Visible = true;
         }
-        private string ValidateEmployeeInput(string Emp_Full_Name, string Emp_Father_Name, string Emp_Mother_Name, string Emp_Gender, string Emp_Date_of_Birth, string Emp_Adhar_Number, string Emp_Blood_Group, string Emp_Age, string Emp_Mobile, string Emp_Email, string Emp_Image, string Emp_Employee_Id, string Emp_Department, string Emp_Year_of_Joining, string Emp_Company_Email, string Emp_Job_Type, string Emp_Password, string Emp_Address, string Emp_City, string Emp_State, string Emp_Country, string Emp_Pincode, string Emp_Emergency_no, string Emp_Account_Holder_Name, string Emp_Bank_Name, string Emp_Account_no, string Emp_Bank_IFSC_Code, string Emp_Bank_Code, string Emp_Branch_Name)
+        private string ValidateEmployeeInput(string Emp_Full_Name, string Emp_Father_Name, string Emp_Mother_Name, string Emp_Gender, string Emp_Date_of_Birth, string Emp_Adhar_Number, string Emp_Blood_Group, string Emp_Age, string Emp_Mobile, string Emp_Email, string Emp_Image, string Emp_Employee_Id, string Emp_Department, string Emp_Year_of_Joining, string Emp_Company_Email, string Emp_Job_Type,string Emp_Designation, string Emp_Password, string Emp_Address, string Emp_City, string Emp_State, string Emp_Country, string Emp_Pincode, string Emp_Emergency_no, string Emp_Account_Holder_Name, string Emp_Bank_Name, string Emp_Account_no, string Emp_Bank_IFSC_Code, string Emp_Bank_Code, string Emp_Branch_Name)
         {
             if (Emp_Full_Name.Length > 100) return "Full Name exceeds the maximum length of 100.";
             if (Emp_Father_Name.Length > 100) return "Father Name exceeds the maximum length of 100.";
@@ -143,7 +144,7 @@ namespace project_sem_6_.admin
             if (btn_crud.Text == "Add")
             {
                 imgupload();
-                string errorMessage = ValidateEmployeeInput(Emp_Full_Name.Text, Emp_Father_Name.Text, Emp_Mother_Name.Text, Emp_Gender.SelectedValue, Emp_Date_of_Birth.Text, Emp_Adhar_Number.Text, Emp_Blood_Group.SelectedValue, Emp_Age.Text, Emp_Mobile.Text, Emp_Email.Text, ViewState["img"].ToString(), Emp_Employee_Id.Text, Emp_Department.SelectedValue, Emp_Year_of_Joining.Text, Emp_Company_Email.Text, Emp_Job_Type.SelectedValue, Emp_Password.Text, Emp_Address.Text, Emp_City.SelectedValue, Emp_State.SelectedValue, Emp_Country.Text, Emp_Pincode.Text, Emp_Emergency_no.Text, Emp_Account_Holder_Name.Text, Emp_Bank_Name.Text, Emp_Account_no.Text, Emp_Bank_IFSC_Code.Text, Emp_Bank_Code.Text, Emp_Branch_Name.Text);
+                string errorMessage = ValidateEmployeeInput(Emp_Full_Name.Text, Emp_Father_Name.Text, Emp_Mother_Name.Text, Emp_Gender.SelectedValue, Emp_Date_of_Birth.Text, Emp_Adhar_Number.Text, Emp_Blood_Group.SelectedValue, Emp_Age.Text, Emp_Mobile.Text, Emp_Email.Text, ViewState["img"].ToString(), Emp_Employee_Id.Text, Emp_Department.SelectedValue, Emp_Year_of_Joining.Text, Emp_Company_Email.Text, Emp_Job_Type.SelectedValue, Emp_Designation.SelectedValue, Emp_Password.Text, Emp_Address.Text, Emp_City.SelectedValue, Emp_State.SelectedValue, Emp_Country.Text, Emp_Pincode.Text, Emp_Emergency_no.Text, Emp_Account_Holder_Name.Text, Emp_Bank_Name.Text, Emp_Account_no.Text, Emp_Bank_IFSC_Code.Text, Emp_Bank_Code.Text, Emp_Branch_Name.Text);
 
                 if (!string.IsNullOrEmpty(errorMessage))
                 {
@@ -151,13 +152,13 @@ namespace project_sem_6_.admin
                     HttpContext.Current.Response.Write("<script>alert('" + errorMessage + "');</script>");
                     return;
                 }
-                cs.Employee_Add(Emp_Full_Name.Text, Emp_Father_Name.Text, Emp_Mother_Name.Text, Emp_Gender.SelectedValue, Emp_Date_of_Birth.Text, Emp_Adhar_Number.Text, Emp_Blood_Group.SelectedValue, Emp_Age.Text, Emp_Mobile.Text, Emp_Email.Text, ViewState["img"].ToString(), Emp_Employee_Id.Text, Emp_Department.SelectedValue, Emp_Year_of_Joining.Text, Emp_Company_Email.Text, Emp_Job_Type.SelectedValue, Emp_Password.Text, Emp_Address.Text, Emp_City.SelectedValue, Emp_State.SelectedValue, Emp_Country.Text, Emp_Pincode.Text, Emp_Emergency_no.Text, Emp_Account_Holder_Name.Text, Emp_Bank_Name.Text, Emp_Account_no.Text, Emp_Bank_IFSC_Code.Text, Emp_Bank_Code.Text, Emp_Branch_Name.Text);
+                cs.Employee_Add(Emp_Full_Name.Text, Emp_Father_Name.Text, Emp_Mother_Name.Text, Emp_Gender.SelectedValue, Emp_Date_of_Birth.Text, Emp_Adhar_Number.Text, Emp_Blood_Group.SelectedValue, Emp_Age.Text, Emp_Mobile.Text, Emp_Email.Text, ViewState["img"].ToString(), Emp_Employee_Id.Text, Emp_Department.SelectedValue, Emp_Year_of_Joining.Text, Emp_Company_Email.Text, Emp_Job_Type.SelectedValue, Emp_Designation.SelectedValue, Emp_Password.Text, Emp_Address.Text, Emp_City.SelectedValue, Emp_State.SelectedValue, Emp_Country.Text, Emp_Pincode.Text, Emp_Emergency_no.Text, Emp_Account_Holder_Name.Text, Emp_Bank_Name.Text, Emp_Account_no.Text, Emp_Bank_IFSC_Code.Text, Emp_Bank_Code.Text, Emp_Branch_Name.Text);
                 fillgrid();
                 clear();
             }
             else
             {
-                cs.Employee_Edit(Convert.ToInt16(ViewState["id"]), Emp_Full_Name.Text, Emp_Father_Name.Text, Emp_Mother_Name.Text, Emp_Gender.SelectedValue, Emp_Date_of_Birth.Text, Emp_Adhar_Number.Text, Emp_Blood_Group.SelectedValue, Emp_Age.Text, Emp_Mobile.Text, Emp_Email.Text, Emp_Employee_Id.Text, Emp_Department.SelectedValue, Emp_Year_of_Joining.Text, Emp_Company_Email.Text, Emp_Job_Type.SelectedValue, Emp_Password.Text, Emp_Address.Text, Emp_City.SelectedValue, Emp_State.SelectedValue, Emp_Country.Text, Emp_Pincode.Text, Emp_Emergency_no.Text, Emp_Account_Holder_Name.Text, Emp_Bank_Name.Text, Emp_Account_no.Text, Emp_Bank_IFSC_Code.Text, Emp_Bank_Code.Text, Emp_Branch_Name.Text);
+                cs.Employee_Edit(Convert.ToInt16(ViewState["id"]), Emp_Full_Name.Text, Emp_Father_Name.Text, Emp_Mother_Name.Text, Emp_Gender.SelectedValue, Emp_Date_of_Birth.Text, Emp_Adhar_Number.Text, Emp_Blood_Group.SelectedValue, Emp_Age.Text, Emp_Mobile.Text, Emp_Email.Text, Emp_Employee_Id.Text, Emp_Department.SelectedValue, Emp_Year_of_Joining.Text, Emp_Company_Email.Text, Emp_Job_Type.SelectedValue, Emp_Designation.SelectedValue, Emp_Password.Text, Emp_Address.Text, Emp_City.SelectedValue, Emp_State.SelectedValue, Emp_Country.Text, Emp_Pincode.Text, Emp_Emergency_no.Text, Emp_Account_Holder_Name.Text, Emp_Bank_Name.Text, Emp_Account_no.Text, Emp_Bank_IFSC_Code.Text, Emp_Bank_Code.Text, Emp_Branch_Name.Text);
                 fillgrid();
                 clear();
             }

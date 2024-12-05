@@ -12,18 +12,40 @@ namespace project_sem_6_.admin
         SqlDataAdapter da;
         DataSet ds;
         Employee cs;
-        int month, year, i;
+        int month, year;
 
-        // Initialize the connection once
         void startcon()
         {
             cs = new Employee();
             con = cs.getcon();
         }
-
+        void fillgrid()
+        {
+            GridView1.DataSource = cs.Payroll_filldata();
+            GridView1.DataBind();
+        }
+        void filltext()
+        {
+            ds = new DataSet();
+            ds = cs.Payroll_select_admin(Convert.ToInt16(ViewState["id"]));
+            Emp_Id.Text = (ds.Tables[0].Rows[0][1]).ToString();
+            P_Month_S.Text = (ds.Tables[0].Rows[0][2]).ToString();
+            P_Year_S.Text = (ds.Tables[0].Rows[0][3]).ToString();
+            P_TotalWorkingHours.Text = (ds.Tables[0].Rows[0][4]).ToString();
+            P_BaseSalary.Text = (ds.Tables[0].Rows[0][5]).ToString();
+            P_HRA.Text = (ds.Tables[0].Rows[0][6]).ToString();
+            P_DA.Text = (ds.Tables[0].Rows[0][7]).ToString();
+            P_TA.Text = (ds.Tables[0].Rows[0][8]).ToString();
+            P_OtherAllowances.Text = (ds.Tables[0].Rows[0][9]).ToString();
+            P_Deductions.Text = (ds.Tables[0].Rows[0][10]).ToString();
+            P_TotalPayable.Text = (ds.Tables[0].Rows[0][11]).ToString();
+            P_NetSalary.Text = (ds.Tables[0].Rows[0][12]).ToString();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            startcon(); // Initialize connection
+            startcon();
+            fillgrid();
+            //Response.Redirect(Request.RawUrl);
         }
 
         protected void give_payroll_Click(object sender, EventArgs e)
@@ -33,18 +55,31 @@ namespace project_sem_6_.admin
             year = int.Parse(P_Year.Text);
 
             decimal totalWorkingHours = GetTotalWorkingHours(empId, month, year);
-            decimal payAmount = CalculatePayAmount(totalWorkingHours);
+            decimal hourlyRate = GetHourlyRate(empId);
+            decimal baseSalary = totalWorkingHours * hourlyRate;
 
             if (totalWorkingHours > 0)
             {
-                InsertPayrollData(empId, month, year, totalWorkingHours, payAmount);
-                UpdateWorkingHourStatus(empId, month, year); // Mark records as inactive
+                // Calculate payroll components
+                decimal hra = baseSalary * 0.2m; // Example: 20% of Base Salary
+                decimal da = baseSalary * 0.1m; // Example: 10% of Base Salary
+                decimal ta = baseSalary * 0.05m; // Example: Fixed TA
+                decimal otherAllowances = 1500; // Example: Fixed Other Allowances
+                decimal deductions = baseSalary * 0.05m; // Example: 5% of Base Salary
+                decimal totalPayable = baseSalary + hra + da + ta + otherAllowances;
+                decimal netSalary = totalPayable - deductions;
+
+                // Insert into Payroll_tbl
+                InsertPayrollData(empId, month, year, totalWorkingHours, baseSalary, hra, da, ta, otherAllowances, deductions, totalPayable, netSalary);
+
+                // Update Working Hour Status
+                UpdateWorkingHourStatus(empId, month, year);
             }
             else
             {
-                // Handle the case where there are no working hours to process payroll
                 Console.WriteLine("No working hours found for the given employee and time period.");
             }
+            Response.Redirect(Request.RawUrl);
         }
 
         private decimal GetTotalWorkingHours(string empId, int month, int year)
@@ -52,7 +87,6 @@ namespace project_sem_6_.admin
             startcon();
             decimal totalWorkingHours = 0;
 
-            // Ensure the connection is open before executing the command
             cmd = new SqlCommand("SELECT SUM(CountHour) AS TotalWorkingHours " +
                                  "FROM Working_Hour_tbl " +
                                  "WHERE W_EmpID = @EmpId AND MONTH(ClockInTime) = @Month AND YEAR(ClockInTime) = @Year AND Status = 'Active'", con);
@@ -60,9 +94,8 @@ namespace project_sem_6_.admin
             cmd.Parameters.AddWithValue("@Month", month);
             cmd.Parameters.AddWithValue("@Year", year);
 
-            //con.Open(); // Open connection
-            object obj = cmd.ExecuteScalar(); // Execute the query and get the result
-            con.Close(); // Close the connection
+            object obj = cmd.ExecuteScalar();
+            con.Close();
 
             if (obj != DBNull.Value && obj != null)
             {
@@ -72,42 +105,81 @@ namespace project_sem_6_.admin
             return totalWorkingHours;
         }
 
-        private decimal CalculatePayAmount(decimal totalWorkingHours)
-        {
-            decimal hourlyRate = 1000.0m; // Define hourly rate
-            return totalWorkingHours * hourlyRate; // Calculate pay amount
-        }
-
-        private void InsertPayrollData(string empId, int month, int year, decimal totalWorkingHours, decimal payAmount)
+        private decimal GetHourlyRate(string empId)
         {
             startcon();
-            if (totalWorkingHours <= 0)
+            decimal hourlyRate = 0;
+
+            cmd = new SqlCommand("SELECT D.Hourly_Rate " +
+                                 "FROM Employee_tbl E " +
+                                 "INNER JOIN Designation_tbl D ON E.Emp_Designation = D.Designation_Name " +
+                                 "WHERE E.Emp_Employee_Id = @EmpId", con);
+            cmd.Parameters.AddWithValue("@EmpId", empId);
+
+            object hourlyRateObj = cmd.ExecuteScalar();
+            con.Close();
+
+            if (hourlyRateObj != DBNull.Value)
             {
-                Console.WriteLine("No working hours to insert for payroll.");
-                return; // Prevent inserting if there are no working hours
+                hourlyRate = Convert.ToDecimal(hourlyRateObj);
             }
 
-            string insertQuery = "INSERT INTO Payroll_tbl(P_Emp_Id, P_Month, P_Year, P_TotalWorkingHours, P_PayAmount) " +
-                                 "VALUES(@EmpId, @Month, @Year, @TotalWorkingHours, @PayAmount)";
+            return hourlyRate;
+        }
 
-            // Use the existing connection
+        private void InsertPayrollData(
+            string empId, int month, int year, decimal totalWorkingHours,
+            decimal baseSalary, decimal hra, decimal da, decimal ta,
+            decimal otherAllowances, decimal deductions, decimal totalPayable, decimal netSalary)
+        {
+            startcon();
+
+            string insertQuery = @"INSERT INTO Payroll_tbl
+                (P_Emp_Id, P_Month, P_Year, P_TotalWorkingHours, P_BaseSalary, P_HRA, P_DA, P_TA, 
+                P_OtherAllowances, P_Deductions, P_TotalPayable, P_NetSalary) 
+                VALUES (@EmpId, @Month, @Year, @TotalWorkingHours, @BaseSalary, @HRA, @DA, @TA, 
+                @OtherAllowances, @Deductions, @TotalPayable, @NetSalary)";
+
             using (cmd = new SqlCommand(insertQuery, con))
             {
                 cmd.Parameters.AddWithValue("@EmpId", empId);
                 cmd.Parameters.AddWithValue("@Month", month);
                 cmd.Parameters.AddWithValue("@Year", year);
                 cmd.Parameters.AddWithValue("@TotalWorkingHours", totalWorkingHours);
-                cmd.Parameters.AddWithValue("@PayAmount", payAmount);
+                cmd.Parameters.AddWithValue("@BaseSalary", baseSalary);
+                cmd.Parameters.AddWithValue("@HRA", hra);
+                cmd.Parameters.AddWithValue("@DA", da);
+                cmd.Parameters.AddWithValue("@TA", ta);
+                cmd.Parameters.AddWithValue("@OtherAllowances", otherAllowances);
+                cmd.Parameters.AddWithValue("@Deductions", deductions);
+                cmd.Parameters.AddWithValue("@TotalPayable", totalPayable);
+                cmd.Parameters.AddWithValue("@NetSalary", netSalary);
 
-                //con.Open(); // Open the connection before executing the insert command
-                cmd.ExecuteNonQuery(); // Execute the insert command
-                con.Close(); // Close the connection after executing the command
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
+        }
+
+        protected void GridView1_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt16(e.CommandArgument);
+            ViewState["id"] = id;
+            if (e.CommandName == "cmd_action")
+            {
+                UpdatePanel2.Visible = true;
+                filltext();
+            }
+        }
+
+        protected void give_Click(object sender, EventArgs e)
+        {
+            UpdatePanel1.Visible = true;
         }
 
         private void UpdateWorkingHourStatus(string empId, int month, int year)
         {
             startcon();
+
             string updateQuery = "UPDATE Working_Hour_tbl SET Status = 'Inactive' " +
                                  "WHERE W_EmpID = @EmpId AND MONTH(ClockInTime) = @Month AND YEAR(ClockInTime) = @Year AND Status = 'Active'";
 
@@ -117,9 +189,8 @@ namespace project_sem_6_.admin
                 cmd.Parameters.AddWithValue("@Month", month);
                 cmd.Parameters.AddWithValue("@Year", year);
 
-                //con.Open(); // Open connection before executing the update command
-                cmd.ExecuteNonQuery(); // Execute the update command
-                con.Close(); // Close the connection
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
         }
     }

@@ -6,6 +6,10 @@
         <xs:element name="Table">
           <xs:complexType>
             <xs:sequence>
+              <xs:element name="EmpId" type="xs:string" minOccurs="0" />
+              <xs:element name="FullName" type="xs:string" minOccurs="0" />
+              <xs:element name="Designation" type="xs:string" minOccurs="0" />
+              <xs:element name="Department" type="xs:string" minOccurs="0" />
               <xs:element name="Id" type="xs:int" minOccurs="0" />
               <xs:element name="P_Emp_Id" type="xs:string" minOccurs="0" />
               <xs:element name="P_Month" type="xs:int" minOccurs="0" />

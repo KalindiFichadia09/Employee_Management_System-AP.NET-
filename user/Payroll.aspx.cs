@@ -85,21 +85,53 @@ namespace project_sem_6_.user
 
         private void LoadData()
         {
+            //int payrollId = Convert.ToInt32(ViewState["id"]);
+            //startcon();
+            //SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Payroll_tbl WHERE Id = @Id", con);
+            //da.SelectCommand.Parameters.AddWithValue("@Id", payrollId);
+            //ds = new DataSet();
+            //da.Fill(ds);
+            //con.Close();
+
+            //// Update ViewState with month and year from the dataset
+            //if (ds.Tables[0].Rows.Count > 0)
+            //{
+            //    DataRow row = ds.Tables[0].Rows[0];
+            //    ViewState["month"] = row["P_Month"]?.ToString();
+            //    ViewState["year"] = row["P_Year"]?.ToString();
+            //}
+
             int payrollId = Convert.ToInt32(ViewState["id"]);
             startcon();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Payroll_tbl WHERE Id = @Id", con);
-            da.SelectCommand.Parameters.AddWithValue("@Id", payrollId);
-            ds = new DataSet();
-            da.Fill(ds);
-            con.Close();
 
-            // Update ViewState with month and year from the dataset
-            if (ds.Tables[0].Rows.Count > 0)
+            // SQL query to fetch required data from both tables
+            string query = @"
+        SELECT 
+            e.Emp_Employee_Id AS EmpId,
+            e.Emp_Full_Name AS FullName,
+            e.Emp_Designation AS Designation,
+            e.Emp_Department AS Department,
+            p.*
+        FROM 
+            Employee_tbl e
+        INNER JOIN 
+            Payroll_tbl p ON e.Emp_Employee_Id = p.P_Emp_Id
+        WHERE 
+            p.Id = @PayrollId";
+
+            // Execute query and fill the DataSet
+            using (SqlCommand cmd = new SqlCommand(query, con))
             {
-                DataRow row = ds.Tables[0].Rows[0];
-                ViewState["month"] = row["P_Month"]?.ToString();
-                ViewState["year"] = row["P_Year"]?.ToString();
+                cmd.Parameters.AddWithValue("@PayrollId", payrollId);
+
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    ds = new DataSet();
+                    da.Fill(ds);
+                }
             }
+
+            con.Close();
         }
 
         protected void btn_download_Click(object sender, EventArgs e)
@@ -151,6 +183,7 @@ namespace project_sem_6_.user
                 // Handle the exception or log the error
                 Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
             }
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)

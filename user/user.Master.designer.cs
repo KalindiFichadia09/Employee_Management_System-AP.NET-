@@ -42,6 +42,15 @@ namespace project_sem_6_.user
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
 
         /// <summary>
+        /// Emp_Image control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Emp_Image;
+
+        /// <summary>
         /// Emp_Username control.
         /// </summary>
         /// <remarks>

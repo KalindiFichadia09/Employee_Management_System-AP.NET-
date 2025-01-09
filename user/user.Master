@@ -64,7 +64,8 @@
                                 <div class="dropdown">
                                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                         <span class="user-icon">
-                                            <img src="../vendors/images/photo1.jpg" alt="">
+                                            <asp:Image ID="Emp_Image" runat="server" AlternateText="Profile Photo" style="height:55px;width:60px;"/>
+                                            <%--<img src="../vendors/images/photo1.jpg" alt="">--%>
                                         </span>
                                         <span class="user-name">
                                             <asp:Label ID="Emp_Username" runat="server" Text="Label"></asp:Label></span>

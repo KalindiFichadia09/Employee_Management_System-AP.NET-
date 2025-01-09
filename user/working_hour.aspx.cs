@@ -78,12 +78,14 @@ namespace project_sem_6_.user
         protected void btnClockIn_Click(object sender, EventArgs e)
         {
             RecordClockIn();
+            Response.Redirect(Request.RawUrl);
 
         }
 
         protected void btnClockOut_Click(object sender, EventArgs e)
         {
             RecordClockOut();
+            Response.Redirect(Request.RawUrl);
         }
 
         private void RecordClockIn()

@@ -79,15 +79,19 @@ namespace project_sem_6_.admin
             startcon();
             if (Add_Task.Text == "Add")
             {
+                startcon();
                 cs.Task_Add(T_Emp_Email.Text, T_Description.Text, T_End_By.Text);
                 fillgrid();
                 clear();
+                con.Close();
             }
             else
             {
+                startcon();
                 cs.Task_Edit(Convert.ToInt16(ViewState["id"]), T_Emp_Email.Text, T_Description.Text, T_End_By.Text);
                 fillgrid();
                 clear();
+                con.Close();
             }
         }
     }

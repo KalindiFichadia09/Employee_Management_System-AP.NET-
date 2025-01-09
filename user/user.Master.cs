@@ -35,6 +35,7 @@ namespace project_sem_6_.user
                     while (rd.Read())
                     {
                         Emp_Username.Text = rd["Emp_Full_Name"].ToString();
+                        Emp_Image.Attributes["src"] = rd["Emp_Image"].ToString();
                         ViewState["empID"] = rd["Emp_Employee_Id"].ToString();
                     }
                 }

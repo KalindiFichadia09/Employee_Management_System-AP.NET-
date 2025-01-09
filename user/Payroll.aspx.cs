@@ -85,22 +85,6 @@ namespace project_sem_6_.user
 
         private void LoadData()
         {
-            //int payrollId = Convert.ToInt32(ViewState["id"]);
-            //startcon();
-            //SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Payroll_tbl WHERE Id = @Id", con);
-            //da.SelectCommand.Parameters.AddWithValue("@Id", payrollId);
-            //ds = new DataSet();
-            //da.Fill(ds);
-            //con.Close();
-
-            //// Update ViewState with month and year from the dataset
-            //if (ds.Tables[0].Rows.Count > 0)
-            //{
-            //    DataRow row = ds.Tables[0].Rows[0];
-            //    ViewState["month"] = row["P_Month"]?.ToString();
-            //    ViewState["year"] = row["P_Year"]?.ToString();
-            //}
-
             int payrollId = Convert.ToInt32(ViewState["id"]);
             startcon();
 
